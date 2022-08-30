@@ -8,7 +8,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true,
-        foreingKey: true,
+        foreignKey: true,
         allowNull: false
       },
       categoryId: {
@@ -17,7 +17,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true,
-        foreingKey: true,
+        foreignKey: true,
         allowNull: false
       },
     });
