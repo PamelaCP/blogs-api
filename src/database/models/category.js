@@ -1,15 +1,12 @@
-const Category = (sequelize, DataTypes) => {
-  const Category = sequelize.define("Category", {
+module.exports = (sequelize, DataTypes) => {
+  const category = sequelize.define("Category", {
     id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING(255),
-    allowNull: false,
-    },
+    name: DataTypes.STRING,
   },
   {
     timestamps: false,
@@ -17,9 +14,5 @@ const Category = (sequelize, DataTypes) => {
   }
   );
   
-  return Category;
+  return category;
 };
-
-module.exports = Category;
-
-// sala 01 dificuldade com a tabela BlogPost e PostCategorie
