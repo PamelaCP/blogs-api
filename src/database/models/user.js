@@ -1,4 +1,4 @@
-const User = (sequelize, DataTypes) => {
+const Po = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     id: {
       type: DataTypes.INTERGER,
