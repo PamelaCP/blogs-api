@@ -8,4 +8,19 @@ const userController = async (req, res) => {
     return res.status(201).json({ token });
 };
 
-module.exports = { userController };
+// const getAllUsers = async (req, res) => {
+//     try {
+//       const allUsers = await userServ.getAllUsers();
+//       return res.status(200).json(allUsers);
+//     } catch (err) {
+//       return res
+//         .status(500).json({ message: 'Server Error' });
+//     }
+//   };
+
+  const getAllUsers = async (req, res) => {
+      const allUsers = await userServ.getAllUsers();
+      return res.status(200).json(allUsers);
+    };
+  
+ module.exports = { userController, getAllUsers };
