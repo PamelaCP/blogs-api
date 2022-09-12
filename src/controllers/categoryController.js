@@ -1,13 +1,18 @@
-const CategoryServices = require('../services/categoryService');
+const service = require('../services/categoryService');
 
-const CategoryControllers = {
+const categoryControllers = {
 
   addCategory: async (req, res) => {
     const { name } = req.body;
     console.log(name);
-    const result = await CategoryServices.addCategory({ name });
+    const result = await service.addCategory({ name });
     return res.status(201).json({ id: result.insertId, name });
+  },
+
+  getAllCategory: async (_req, res) => {
+    const result = await service.getAllCategory();
+    return res.status(200).json(result);
   },
 };
 
-module.exports = CategoryControllers;
+module.exports = categoryControllers;
