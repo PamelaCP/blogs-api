@@ -24,15 +24,4 @@ const bodyValidation = (infoUser) => {
         if (error) throw error;
         return value; 
 };
-
-module.exports = { bodyValidation };
-
-// test 
-// image: Joi.string().required().messages({ 'any.required': `400|${ANY_REQUIRED}`,'string.base':'400|chegou numero' }),
-// });
-
-// const { error, value } = User.validate(infoUser);
-// console.log(error);
-// if (error) throw error;
-// return value; 
-// };
+ module.exports = { bodyValidation };

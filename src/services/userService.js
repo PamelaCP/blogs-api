@@ -1,6 +1,6 @@
 const { User } = require('../database/models');
 
-const validateUser = require('../middlewares/joiValidation');
+const validateUser = require('../middlewares/bodyValidation');
 
 const userService = async ({ displayName, email, password, image }) => {
     const infoUser = validateUser.bodyValidation({ displayName, email, password, image });
