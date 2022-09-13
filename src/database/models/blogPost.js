@@ -2,6 +2,7 @@ const BlogPost = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define("BlogPost", {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
@@ -15,16 +16,21 @@ const BlogPost = (sequelize, DataTypes) => {
     },
     userId: {
     type: DataTypes.INTEGER,
-    foreignKey: true,
+        allowNull: false,
+        foreingKey: true, 
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'userId',
+        references: {
+          model: 'Users',
+          key: 'id'},
     },
-    published: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updated: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+      published: {
+        type: DataTypes.DATE,
+      },
+      updated: {
+        type: DataTypes.DATE,
+      },
   },
   {
     createdAt: 'published',
