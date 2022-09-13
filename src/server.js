@@ -10,6 +10,7 @@ const auth = require('./middlewares/auth');
 const catController = require('./controllers/categoryController');
 const postController = require('./controllers/postController');
 const allPostCtrl = require('./controllers/allPostController');
+const idPostCtrll = require('./controllers/idPostController');
 // não remova a variável `API_PORT` ou o `listen`
 const port = process.env.API_PORT || 3000;
 
@@ -21,6 +22,7 @@ app.post('/categories', auth.valideToken, catController.addCategory);
 app.get('/categories', auth.valideToken, catController.getAllCategory);
 app.post('/post', auth.valideToken, postController.addPost);
 app.get('/post', auth.valideToken, allPostCtrl.allPostController);
+app.get('/post/:id', auth.valideToken, idPostCtrll.idPostPostController);
 // não remova esse endpoint
 app.get('/', (_request, response) => {
   response.send();
