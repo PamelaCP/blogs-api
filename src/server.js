@@ -31,7 +31,7 @@ app.get('/', (_request, response) => {
 app.use((err, _req, res, _next) => {
   console.error(err);
   const [code, message] = err.message.split('|');
-  return res.status(code).json({ message });
+  return res.status(code || 500).json({ message });
 });
 
 app.listen(port, () => console.log('ouvindo porta', port));

@@ -4,7 +4,7 @@ const isValid = require('../middlewares/categoryValidation');
 const categoryService = {
 
   addCategory: async ({ name }) => {
-    const verify = isValid({ name });
+    const verify = isValid.categoryValidation({ name });
     const result = await Category.create(verify);
     return result;
   },

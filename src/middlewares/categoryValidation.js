@@ -8,12 +8,12 @@ const categoryValidation = (category) => {
       }),
     });
   
-    const { error, value } = categories.validate(category);
+    const { error } = categories.validate(category);
   
     if (error) {
       throw error;
     }
-    return value;
+    return category;
   };
 
   const addPostValidate = (body) => {
