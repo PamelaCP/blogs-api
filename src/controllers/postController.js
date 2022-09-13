@@ -1,4 +1,5 @@
 const postService = require('../services/postService');
+
 const postValidate = require('../middlewares/categoryValidation');
 
 const addPost = async (req, res) => {
@@ -12,4 +13,14 @@ const addPost = async (req, res) => {
   return res.status(201).json(result);
 };
 
-module.exports = { addPost };
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  const { email } = req.userEmail;
+  const updateValid = postValidate.updateValidate(body);
+  const { title, content } = updateValid;
+  const result = await postService.update({ id, title, content, email });
+  return res.status(200).json(result);
+};
+
+module.exports = { addPost, update };

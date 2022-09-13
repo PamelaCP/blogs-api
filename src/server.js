@@ -23,6 +23,8 @@ app.get('/categories', auth.valideToken, catController.getAllCategory);
 app.post('/post', auth.valideToken, postController.addPost);
 app.get('/post', auth.valideToken, allPostCtrl.allPostController);
 app.get('/post/:id', auth.valideToken, idPostCtrll.idPostPostController);
+app.put('/post/:id', auth.valideToken, postController.update);
+// app.delete('/post/:id', auth.valideToken, postController.removePost);
 // não remova esse endpoint
 app.get('/', (_request, response) => {
   response.send();

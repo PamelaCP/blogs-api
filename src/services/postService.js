@@ -1,4 +1,4 @@
-const { BlogPost, PostCategory, User, sequelize } = require('../database/models');
+const { BlogPost, PostCategory, Category, User, sequelize } = require('../database/models');
 const postValidate = require('../middlewares/categoryIds');
 
 const addPostService = async ({ title, content, categoryIds, email }) => {
@@ -17,4 +17,24 @@ const addPostService = async ({ title, content, categoryIds, email }) => {
     return trasActions;
 };
 
-module.exports = { addPostService };
+const update = async ({ title, content, id, email }) => {
+    const validId = await User.findOne({ where: { email } });
+    await BlogPost.update({ title, content }, { where: { id, userId: validId.dataValues.id } });
+
+    const result = await BlogPost.findOne({
+        where: { id, userId: validId.dataValues.id },
+        include: [{
+          model: User,
+          as: 'user',
+          attributes: { exclude: ['password'] },
+        },
+        {
+          model: Category,
+          as: 'categories',
+        }],
+      });
+    if (!result) throw new Error('401|Unauthorized user');
+    return result; 
+};
+
+module.exports = { addPostService, update };
