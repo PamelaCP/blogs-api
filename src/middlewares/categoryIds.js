@@ -8,3 +8,5 @@ const validCatIdsArr = async (arr) => {
 };
 
 module.exports = validCatIdsArr;
+
+// validação do array
