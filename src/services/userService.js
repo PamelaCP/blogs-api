@@ -25,4 +25,10 @@ const getAllUsers = async () => {
     return userId;
   };
 
-module.exports = { userService, getAllUsers, getUserId };
+  const deleteUser = async (email) => {
+    await User.destroy({
+      where: { email },
+    });
+  };
+
+module.exports = { userService, getAllUsers, getUserId, deleteUser };

@@ -1,3 +1,4 @@
+/* eslint-disable no-self-compare */
 const { BlogPost, PostCategory, Category, User, sequelize } = require('../database/models');
 const postValidate = require('../middlewares/categoryIds');
 
@@ -37,4 +38,21 @@ const update = async ({ title, content, id, email }) => {
     return result; 
 };
 
-module.exports = { addPostService, update };
+const removePost = async (id, email) => {
+    const verifyUser = await User.findOne({ where: { email } });
+    console.log(verifyUser);
+    const userIdVerify = verifyUser.dataValues.id;
+    const getPostId = await BlogPost.findOne({
+        where: { id },
+      });
+      if (!getPostId) throw new Error('404|Post does not exist');
+      const postIdDel = getPostId.dataValues.userId;
+
+      if (Number(userIdVerify) !== Number(postIdDel)) throw new Error('401|Unauthorized user');
+
+      await BlogPost.destroy({
+        where: { id },
+      });
+};
+  
+module.exports = { addPostService, update, removePost };

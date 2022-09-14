@@ -23,4 +23,10 @@ const update = async (req, res) => {
   return res.status(200).json(result);
 };
 
-module.exports = { addPost, update };
+const removePost = async (req, res) => {
+  const { id } = req.params;
+  const { email } = req.userEmail;
+  await postService.removePost(id, email);
+  return res.status(204).end();
+};
+module.exports = { addPost, update, removePost };

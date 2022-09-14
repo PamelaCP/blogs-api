@@ -18,5 +18,12 @@ const userController = async (req, res) => {
         const getId = await userServ.getUserId(id);
         return res.status(200).json(getId);
       };
+
+        const removeUser = async (req, res) => {
+        const { email } = req.userEmail;
+        console.log(email);
+        await userServ.deleteUser(email);
+        return res.status(204).end();
+      };
   
- module.exports = { userController, getAllUsers, getUserId };
+ module.exports = { userController, getAllUsers, getUserId, removeUser };

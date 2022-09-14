@@ -11,6 +11,8 @@ const catController = require('./controllers/categoryController');
 const postController = require('./controllers/postController');
 const allPostCtrl = require('./controllers/allPostController');
 const idPostCtrll = require('./controllers/idPostController');
+const userdelete = require('./controllers/userController');
+
 // não remova a variável `API_PORT` ou o `listen`
 const port = process.env.API_PORT || 3000;
 
@@ -24,8 +26,9 @@ app.post('/post', auth.valideToken, postController.addPost);
 app.get('/post', auth.valideToken, allPostCtrl.allPostController);
 app.get('/post/:id', auth.valideToken, idPostCtrll.idPostPostController);
 app.put('/post/:id', auth.valideToken, postController.update);
-// app.delete('/post/:id', auth.valideToken, postController.removePost);
-// não remova esse endpoint
+app.delete('/post/:id', auth.valideToken, postController.removePost);
+app.delete('/user/me', auth.valideToken, userdelete.removeUser);
+// não remova esse endpoint 
 app.get('/', (_request, response) => {
   response.send();
 });
